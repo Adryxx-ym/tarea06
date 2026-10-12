@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dominando la fuerza del CSS</title>
+    <link rel="stylesheet" href="estilo.css">
+</head>
+<body id="inicio">
+    <!-- STICKY: la cabecera permanece arriba al desplazarse. -->
+    <header class="cabecera">
+        <nav aria-label="Menú principal">
+            <ul class="menu">
+                <li><a href="#personajes">Personajes</a></li>
+                <li><a href="#naves">Naves</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+    <section class="portada" aria-labelledby="titulo">
+        <h1 id="titulo">DOMINANDO LA FUERZA DEL CSS</h1>
+        <p>Posicionamiento, Filtros y Transformaciones</p>
+    </section>
+    <main>
+        <section class="seccion personajes" id="personajes" aria-label="Personajes">
+            <!-- Las tarjetas son enlaces y funcionan también con teclado. -->
+            <div class="tarjetas">
+                <article class="tarjeta">
+                    <a href="https://www.starwars.com/databank/luke-skywalker" target="_blank" rel="noopener noreferrer" aria-label="Conocer a Luke Skywalker en el sitio oficial (nueva pestaña)">
+                        <div class="imagen"><img src="img/luke.jpg" alt="Luke Skywalker"><span class="etiqueta jedi">JEDI</span></div>
+                        <div class="texto"><h2>Luke Skywalker</h2><p>El último caballero Jedi.</p></div>
+                    </a>
+                </article>
+                <article class="tarjeta">
+                    <a href="https://www.starwars.com/databank/darth-vader" target="_blank" rel="noopener noreferrer" aria-label="Conocer a Darth Vader en el sitio oficial (nueva pestaña)">
+                        <div class="imagen"><img src="img/vader.jpg" alt="Darth Vader con su armadura oscura"><span class="etiqueta sith">SITH</span></div>
+                        <div class="texto"><h2>Darth Vader</h2><p>Señor oscuro del Imperio.</p></div>
+                    </a>
+                </article>
+            </div>
+        </section>
+        <section class="seccion" id="naves" aria-labelledby="titulo-naves">
+            <h2 class="titulo-seccion" id="titulo-naves">Naves de la galaxia</h2>
+            <!-- Lista ordenada solicitada en el objetivo de la tarea. -->
+            <ol class="tarjetas lista-naves">
+                <li class="tarjeta nave">
+                    <a href="https://www.starwars.com/databank/millennium-falcon" target="_blank" rel="noopener noreferrer">
+                        <div class="imagen"><img src="img/halcon.jpg" alt="Halcón Milenario"><span class="etiqueta rebelde">REBELIÓN</span></div>
+                        <div class="texto"><h3>Halcón Milenario</h3><p>Una nave para grandes aventuras.</p></div>
+                    </a>
+                </li>
+                <li class="tarjeta nave">
+                    <a href="https://www.starwars.com/databank/x-wing-starfighter" target="_blank" rel="noopener noreferrer">
+                        <div class="imagen"><img src="img/xwing.jpg" alt="Caza X-wing"><span class="etiqueta rebelde">REBELIÓN</span></div>
+                        <div class="texto"><h3>X-wing</h3><p>Un caza emblemático de la Alianza.</p></div>
+                    </a>
+                </li>
+            </ol>
+        </section>
+        <section class="seccion contacto" id="contacto" aria-labelledby="titulo-contacto">
+            <h2 class="titulo-seccion" id="titulo-contacto">Contacto</h2>
+            <p>Proyecto de práctica de Diseño y Desarrollo Web.</p>
+            <p>Para consultas sobre Star Wars, visita el <a href="https://support.starwars.com/" target="_blank" rel="noopener noreferrer">centro de ayuda oficial</a>.</p>
+        </section>
+    </main>
+    <footer>Imágenes: StarWars.com / Lucasfilm. Proyecto educativo.</footer>
+    <!-- FIXED: el botón permanece en la esquina de la ventana. -->
+    <a class="volver" href="#inicio" aria-label="Volver al inicio" title="Volver al inicio">↑</a>
+</body>
+</html>

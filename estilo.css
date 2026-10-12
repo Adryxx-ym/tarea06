@@ -1,0 +1,81 @@
+/* 1. Base y desplazamiento suave */
+:root {
+    --amarillo: #f8bd3f;
+    --fondo: #0b0e12;
+    --tarjeta: #20252b;
+    --alto-menu: 64px;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: calc(var(--alto-menu) + 26px); }
+body { margin: 0; background: var(--fondo); color: #fff; }
+a { color: inherit; }
+/* 2. STICKY + z-index: el menú se mantiene por encima de las tarjetas. */
+.cabecera {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    min-height: var(--alto-menu);
+    background: var(--amarillo);
+    color: #121212;
+    font-family: Arial, sans-serif;
+    border-bottom: 4px solid #151515;
+}
+.menu { display: flex; justify-content: center; align-items: center; gap: 12px; margin: 0; padding: 0 12px; list-style: none; }
+.menu a { display: block; padding: 22px 20px; font-size: 15px; font-weight: bold; text-decoration: none; transition: background-color .25s ease, transform .25s ease; }
+.menu a:hover, .menu a:focus-visible { background: #ffe1a0; transform: translateY(-2px); }
+/* 3. calc(): altura de la portada adaptada al viewport y a la cabecera. */
+.portada { min-height: calc(48vh - var(--alto-menu)); background: #050607; padding: 30px 20px 54px; text-align: center; }
+h1 { margin: 0 0 30px; font: bold clamp(24px, 3.4vw, 38px)/1.25 Arial, sans-serif; }
+.portada p { margin: 0; font-size: 18px; }
+.seccion { width: min(900px, calc(100% - 48px)); margin: 0 auto; padding: 56px 0; }
+.personajes { padding-top: 70px; }
+.tarjetas { display: flex; gap: 30px; align-items: stretch; }
+/* 4. RELATIVE: referencia de posicionamiento y desplazamiento sin cambiar el flujo. */
+.tarjeta {
+    position: relative;
+    top: 0;
+    flex: 1;
+    min-width: 0;
+    background: var(--tarjeta);
+    border-radius: 15px;
+    transition: transform .35s ease, box-shadow .35s ease;
+}
+.tarjeta a { display: block; height: 100%; text-decoration: none; border-radius: inherit; }
+/* Transformación con transición suave, tanto en hover como con teclado. */
+.tarjeta:hover, .tarjeta:focus-within { transform: translateY(-12px) scale(1.02); box-shadow: 0 14px 28px #0009; z-index: 2; }
+.imagen { position: relative; overflow: hidden; border-radius: 15px 15px 0 0; aspect-ratio: 16 / 9; }
+.imagen img { display: block; width: 100%; height: 100%; aspect-ratio: 16 / 9; object-fit: cover; filter: grayscale(100%) brightness(.65); transition: filter .5s ease, transform .5s ease; }
+.tarjeta:hover img, .tarjeta:focus-within img { filter: grayscale(0%) brightness(1.05); transform: scale(1.06); }
+/* 5. ABSOLUTE: las etiquetas quedan sobre la imagen, dentro de su contenedor relativo. */
+.etiqueta { position: absolute; top: 14px; right: 14px; z-index: 3; padding: 7px 12px; border-radius: 4px; font: bold 11px Arial, sans-serif; }
+.jedi { background: #02c1cf; color: #052c30; }
+.sith { background: #df1645; color: #fff; }
+.rebelde { background: var(--amarillo); color: #191919; }
+.texto { padding: 24px; }
+.texto h2, .texto h3 { margin: 0 0 16px; font: bold 20px Arial, sans-serif; }
+.texto p { margin: 0; font-size: 17px; line-height: 1.5; }
+.titulo-seccion { margin: 0 0 28px; font: bold 25px Arial, sans-serif; }
+.lista-naves { margin: 0; padding-left: 24px; }
+.lista-naves li::marker { color: var(--amarillo); font: bold 17px Arial, sans-serif; }
+.nave:hover, .nave:focus-within { transform: translateY(-10px) rotate(-1deg); }
+.contacto { border-top: 1px solid #343b45; line-height: 1.7; }
+.contacto a { color: var(--amarillo); }
+footer { padding: 25px 70px 35px 24px; color: #acb4bf; text-align: center; font: 13px Arial, sans-serif; }
+/* 6. FIXED: botón anclado al viewport, por encima del resto de elementos. */
+.volver { position: fixed; bottom: 24px; right: 24px; z-index: 200; display: flex; justify-content: center; align-items: center; width: 52px; height: 52px; border-radius: 50%; background: var(--amarillo); color: #161616; text-decoration: none; font: bold 29px Arial, sans-serif; box-shadow: 0 4px 14px #0007; transition: transform .3s ease, background-color .3s ease; }
+.volver:hover { transform: translateY(-5px); background: #ffdc83; }
+a:focus-visible { outline: 3px solid #fff; outline-offset: 4px; }
+.menu a:focus-visible { outline-color: #181818; outline-offset: -4px; }
+@media (max-width: 600px) {
+    .menu { gap: 0; }
+    .menu a { padding: 22px 13px; font-size: 14px; }
+    .tarjetas { flex-direction: column; gap: 30px; }
+    .seccion { width: calc(100% - 40px); padding: 38px 0; }
+    .portada { min-height: calc(42vh - var(--alto-menu)); }
+    .volver { right: 16px; bottom: 16px; width: 46px; height: 46px; }
+}
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { transition: none !important; }
+    .tarjeta:hover, .tarjeta:focus-within, .tarjeta:hover img, .tarjeta:focus-within img, .menu a:hover, .volver:hover { transform: none; }
+}
